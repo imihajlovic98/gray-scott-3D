@@ -38,11 +38,11 @@ build PHONY: phony
 
 build src/25a6634@@Gray-Scott-3D@exe/main.cpp.o: cpp_COMPILER ../src/main.cpp
  DEPFILE = src/25a6634@@Gray-Scott-3D@exe/main.cpp.o.d
- ARGS = -Isrc/25a6634@@Gray-Scott-3D@exe -Isrc -I../src -Iinclude -I../include -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wnon-virtual-dtor -Wextra -Wpedantic -std=c++14 -g
+ ARGS = -Isrc/25a6634@@Gray-Scott-3D@exe -Isrc -I../src -I../CubismNova/include/ -Iinclude -I../include -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wnon-virtual-dtor -Wextra -Wpedantic -std=c++14 -g
 
 build src/25a6634@@Gray-Scott-3D@exe/IC.cpp.o: cpp_COMPILER ../src/IC.cpp
  DEPFILE = src/25a6634@@Gray-Scott-3D@exe/IC.cpp.o.d
- ARGS = -Isrc/25a6634@@Gray-Scott-3D@exe -Isrc -I../src -Iinclude -I../include -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wnon-virtual-dtor -Wextra -Wpedantic -std=c++14 -g
+ ARGS = -Isrc/25a6634@@Gray-Scott-3D@exe -Isrc -I../src -I../CubismNova/include/ -Iinclude -I../include -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wnon-virtual-dtor -Wextra -Wpedantic -std=c++14 -g
 
 build src/Gray-Scott-3D: cpp_LINKER src/25a6634@@Gray-Scott-3D@exe/main.cpp.o src/25a6634@@Gray-Scott-3D@exe/IC.cpp.o
  LINK_ARGS = -Wl,--as-needed -Wl,--no-undefined

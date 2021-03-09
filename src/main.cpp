@@ -1,5 +1,5 @@
-#include "Grid/Cartesian.h"
-#include "Mesh/StructuredUniform.h"
+#include "Cubism/Grid/Cartesian.h"
+#include "Cubism/Mesh/StructuredUniform.h"
 #include <algorithm> 
 
 #include <IC.h> 

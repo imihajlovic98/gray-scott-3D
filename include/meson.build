@@ -1,1 +1,2 @@
-inc = include_directories('.')
+# empty file for now
+inc2 = include_directories('.')
