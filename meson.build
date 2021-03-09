@@ -1,0 +1,6 @@
+project('Gray-Scott-3D', 'cpp', 
+  version : '0.1', 
+  default_options : ['warning_level=3', 'cpp_std=c++14'])
+
+subdir('include')
+subdir('src')
