@@ -1,5 +1,7 @@
-#include "Cubism/Grid/Cartesian.h"
-#include "Cubism/Mesh/StructuredUniform.h"
+#include "Cubism/Block/DataLab.h"
+#include "Cubism/Block/Field.h"
+#include "Cubism/Common.h"
+#include "Cubism/Compiler.h"
 #include <algorithm> 
 
 #include <IC.h> 
@@ -11,23 +13,34 @@ int main(void)
     // step 1 - pre-processing 
     ///////////////////////////////////////////////////////////////////////////
 
-    // initialize 3D mesh 
-    using Mesh = Mesh::StructuredUniform<double, 3>; 
-    using MIndex = typename Mesh::MultiIndex; 
-    // cell-centered scalar grid using integer data 
-    using Grid = Grid::Cartesian<int, Mesh, EntityType::Cell, 0>; 
-    // determine number of cells & blocks in the mesh (13'824 cells)
-    const MIndex nblocks(3);        // 3*3*3 = 27 blocks in topology
-    const MIndex block_cells(8);    // 8*8*8 = 512 cells per block
-    // allocate grid in the domain [0,1] (memory not touched) 
-    Grid grid(nblocks, block_cells); 
+    // identifiers to be used for creating & managing 3D concentration fields
+    using Field = Block::Field<double, EntityType::Node, 3>; 
+    using IRange = typename Field::IndexRangeType; 
+    using MIndex = typename IRange::MultiIndex; 
+    using DataLab = Block::DataLab<Field>; 
+    using Stencil = typename DataLab::StencilType; 
 
-    // initialize block fields using ICs
-    int i = 1; 
-    for (auto bf : grid) {
-        printf("Hello from block %d.\n", i); 
-        ++i; 
+    // define 3D fields to be used (memory not touched)
+    MIndex elements(16);                // 16*16*16 = 4'096 cells
+    IRange element_domain(elements);    // generate element domain
+    Field u(element_domain);            // concentration field for species U
+    Field v(element_domain);            // concentration field for species V
+
+    double k = 0; 
+    for (auto &n : u) {
+        n = k; 
+        k += 1; 
+        printf("field value:\t%f.\n", (double)n); 
     }
-    
+
+    auto fields = [&](const MIndex &)->Field & { return u; };
+
+    DataLab dlab; 
+    const Stencil s(-1, 2); 
+    dlab.allocate(s, u.getIndexRange()); 
+    dlab.loadData(MIndex(0), fields); 
+
+    // attempt to compile and run for now
+
     return 0; 
 }
