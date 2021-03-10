@@ -1,10 +1,13 @@
+#include "Cubism/Block/DataLab.h"
+#include "Cubism/Block/Field.h"
+#include "Cubism/Common.h"
+#include "Cubism/Compiler.h"
 #include <math.h> 
 #include <vector> 
 
-using namespace std; 
+using namespace Cubism; 
 
-void IC(vector<double> &c, int disc)
+void IC(double &u, double &v)
 {
-    // just testing meson linking functionalities
-    int n = c.size(); 
+    // just testing meson linking functionalities 
 }
