@@ -7,11 +7,10 @@ using namespace Cubism;
 
 void IC(Block::DataLab<Block::Field<double, EntityType::Cell, 3>> &dlab_u, 
         Block::DataLab<Block::Field<double, EntityType::Cell, 3>> &dlab_v, 
-        int N, double domain)
+        int N, double h)
 {
     // for now incorporate just some arbitrary ICs
 
-    double h = domain/N;        // stepsize in all dimensions (dx, dy, dz)
     // loop over dimensions
     for (int i = 0; i < N; ++i) {
         for (int j = 0; j < N; ++j) {

@@ -1,4 +1,4 @@
-src = ['main.cpp', 'IC.cpp']
+src = ['main.cpp', 'IC.cpp', 'Laplacian.cpp']
 
 executable('Gray-Scott-3D', 
   sources : src, 
