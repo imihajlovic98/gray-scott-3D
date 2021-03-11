@@ -8,8 +8,8 @@
 using namespace Cubism; 
 
 // definition: collection of possible initial conditions for Gray-Scott
-void IC(Block::Field<double, EntityType::Cell, 3> &u, 
-        Block::Field<double, EntityType::Cell, 3> &v, 
+void IC(Block::DataLab<Block::Field<double, EntityType::Cell, 3>> &dlab_u, 
+        Block::DataLab<Block::Field<double, EntityType::Cell, 3>> &dlab_v, 
         int N, double domain); 
 
 #endif // IC_HPP

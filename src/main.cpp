@@ -53,22 +53,8 @@ int main(void)
     dlab_u.loadData(MIndex(0), field_u);    // load DataLab w/ periodic BCs
     dlab_v.loadData(MIndex(0), field_v); 
 
-    // initialize concentration fields using arbitrary ICs 
-    double stepsize = domain / N; 
-    for (size_t i = 0; i < N; ++i) {
-        for (size_t j = 0; j < N; ++j) {
-            for (size_t k = 0; k < N; ++k) {
-                if (i*i + j*j + k*k < 0.5) {
-                    u(i, j, k) = 1.0; 
-                    v(i, j, k) = 0.0;                 
-                }
-                else {
-                    u(i, j, k) = 0.5; 
-                    v(i, j, k) = 0.5; 
-                } 
-            }
-        }
-    }   
+    // initialize dlab concentration fields using arbitrary ICs 
+    // call IC function
 
     // step 2 - run the simulation 
     ///////////////////////////////////////////////////////////////////////////
