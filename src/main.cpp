@@ -1,3 +1,9 @@
+// File       : main.cpp
+// Created    : Sat Mar 13 2021  6:20:39 pm CET (+0100)
+// Author     : Ivan Mihajlovic Milin
+// Description: File with main function for 3D-Gray-Scott solver
+// Copyright 2021  Ivan Mihajlovic Milin. All Rights Reserved.
+
 #include "Cubism/Block/DataLab.h"
 #include "Cubism/Block/Field.h"
 #include "Cubism/Grid/Cartesian.h"
