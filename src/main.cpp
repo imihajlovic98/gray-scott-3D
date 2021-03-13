@@ -58,7 +58,7 @@ int main(void)
     // generate dummy Datalab objects for temporary solution storage 
     DataLab dlab_u_temp; 
     DataLab dlab_v_temp; 
-    const Stencil s_dummy(0, 0);                            // 1-point stencil
+    const Stencil s_dummy(-1, 2);                           // dummy stencil
     dlab_u_temp.allocate(s_dummy, u_temp.getIndexRange());  // allocate memory
     dlab_v_temp.allocate(s_dummy, v_temp.getIndexRange()); 
     dlab_u_temp.loadData(MIndex(0), field_u_temp);          // periodic BCs
@@ -96,14 +96,30 @@ int main(void)
                     dlab_u_temp(i,j,k) = dlab_u(i,j,k) + fac_u*result_u 
                                 + dt*( F*(1-dlab_u(i,j,k)) - reac );
                     // compute updated value for species V
+                    field_u(i,j,k); 
                     dlab_v_temp(i,j,k) = dlab_v(i,j,k) + fac_v*result_v 
                                 + dt*( reac - dlab_v(i,j,k)*(F+kappa) ); 
                 } 
             }
         }  
         // advance solution by exchanging dlab_temp (new) and dlab (old)
-        // hello 
+        // TODO: improve current "primitive" approach... 
+        for (int i = 0; i < N; ++i) {
+            for (int j = 0; j < N; ++j) {
+                for (int k = 0; k < N; ++k) {
+                    dlab_u(i,j,k) = dlab_u_temp(i,j,k); 
+                    dlab_v(i,j,k) = dlab_v_temp(i,j,k); 
+                } 
+            }
+        } 
     } 
+
+
+
+    // step 3 - post-processing
+    ///////////////////////////////////////////////////////////////////////////
+    
+    // hello
 
     return 0; 
 }
